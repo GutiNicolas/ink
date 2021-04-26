@@ -21,8 +21,8 @@
 		<!-- https://mvnrepository.com/artifact/com.graphql-java/graphql-java -->
 		<dependency>
 			<groupId>com.graphql-java</groupId>
-			<artifactId>graphql-java</artifactId>
-			<version>2021-04-19T03-51-46-d783ec7e</version>
+			<artifactId>graphql-spring-boot-starter</artifactId>
+			<version>5.0.2</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/com.graphql-java/graphiql-spring-boot-starter -->
 		<dependency>
@@ -35,17 +35,6 @@
 			<groupId>com.graphql-java</groupId>
 			<artifactId>graphql-java-tools</artifactId>
 			<version>5.2.4</version>
-		</dependency>
-		<dependency>
-			<groupId>com.graphql-java</groupId>
-			<artifactId>graphql-java-extended-scalars</artifactId>
-			<version>2021-04-09T04-01-28-f4f9cb9</version>
-			<exclusions>
-				<exclusion>
-					<groupId>com.graphql-java</groupId>
-					<artifactId>graphql-java</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 
 

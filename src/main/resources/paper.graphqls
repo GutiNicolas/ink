@@ -1,7 +1,5 @@
-scalar DateTime
-
 type Query {
-    papers: [Paper]
+    papers: [Paper!]
 }
 
 type Mutation {
@@ -11,11 +9,11 @@ type Mutation {
     updatePaper(id:ID!, title: String, body: String, description: String) : Paper!
 
     # Interactions Related Mutations
-    likePaper(paperId: ID!, userId: ID!) : Boolean
-    unLikePaper(paperId: ID!, userId: ID!) : Boolean
-    commentPaper(paperId: ID!, userId: ID!, content: String!) : Comment
-    deleteComment(commentId: ID!, userId: ID!) : Boolean
-    replyComment(originalComment: ID!, userId: ID!, content: String!): Comment
+    likePaper(paperId: ID!, userId: String!) : Boolean
+    unLikePaper(paperId: ID!, userId: String!) : Boolean
+    commentPaper(paperId: ID!, userId: String!, content: String!) : Comment!
+    deleteComment(commentId: ID!, userId: String!) : Boolean
+    replyComment(originalComment: ID!, userId: String!, content: String!): Comment!
 }
 
 type Paper {
@@ -24,28 +22,27 @@ type Paper {
     creator: String!
     body: String!
     description: String!
-    publishedDate: DateTime
-    interactionId: ID
+    publishedDate: String
+    interaction: Interaction
 }
 
 type Interaction {
     id: ID!
-    likes: [ID!]
-    comments: [ID!]
+    likes: [Like!]
+    comments: [Comment!]
 }
 
 type Comment {
     id: ID!
-    userId: ID
+    userId: String
     content: String!
-    publishedDate: DateTime
-    deletionDate: DateTime
-    replies: [ID!]
-    likes: [ID!]
+    publishedDate: String
+    deletionDate: String
+    replies: [Comment!]
 }
 
 type Like {
     id: ID!
-    likedDate: DateTime
-    userId: ID!
+    likedDate: String
+    userId: String!
 }
