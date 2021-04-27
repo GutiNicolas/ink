@@ -1,5 +1,6 @@
 type Query {
     papers: [Paper!]
+    getPaper(id: String!) : Paper!
 }
 
 type Mutation {

@@ -3,17 +3,15 @@ package com.gutinicolas.publisher.ink.resolvers.mutation
 import com.coxautodev.graphql.tools.GraphQLMutationResolver
 import com.gutinicolas.publisher.ink.model.api.Paper
 import com.gutinicolas.publisher.ink.model.api.Review
-import com.gutinicolas.publisher.ink.repository.PaperRepository
+import com.gutinicolas.publisher.ink.services.PublisherService
 import org.springframework.stereotype.Component
 import java.util.*
 
 @Component
-class PaperMutationResolver(private val paperRepository: PaperRepository): GraphQLMutationResolver {
+class PaperMutationResolver(private val publisherService: PublisherService): GraphQLMutationResolver {
 
     fun publishPaper(title: String, creator: String, body: String, description: String): Paper {
-        val paper: Paper = Paper("Titulo", "Nicolas", "Body del Post", "Un post de prueba")
-        paperRepository.save(paper)
-        return paper
+        return publisherService.createPaper(title, creator, body, description)
     }
 
     fun deletePaper(id: String): Boolean {
