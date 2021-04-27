@@ -1,6 +1,12 @@
 package com.gutinicolas.publisher.ink.model.api
 
-data class Interaction (val id: String) {
+import org.springframework.data.annotation.Id
+import org.springframework.data.mongodb.core.mapping.Document
+
+@Document(collection = "interaction")
+data class Interaction (@Id val id: String) {
+    @Transient
     var likes: List<Like> = ArrayList()
-    var comments: List<Comment> = ArrayList()
+    @Transient
+    var reviews: List<Review> = ArrayList()
 }

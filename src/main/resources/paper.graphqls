@@ -11,9 +11,9 @@ type Mutation {
     # Interactions Related Mutations
     likePaper(paperId: ID!, userId: String!) : Boolean
     unLikePaper(paperId: ID!, userId: String!) : Boolean
-    commentPaper(paperId: ID!, userId: String!, content: String!) : Comment!
+    commentPaper(paperId: ID!, userId: String!, content: String!) : Review!
     deleteComment(commentId: ID!, userId: String!) : Boolean
-    replyComment(originalComment: ID!, userId: String!, content: String!): Comment!
+    replyComment(originalComment: ID!, userId: String!, content: String!): Review!
 }
 
 type Paper {
@@ -29,16 +29,16 @@ type Paper {
 type Interaction {
     id: ID!
     likes: [Like!]
-    comments: [Comment!]
+    reviews: [Review!]
 }
 
-type Comment {
+type Review {
     id: ID!
     userId: String
     content: String!
     publishedDate: String
     deletionDate: String
-    replies: [Comment!]
+    replies: [Review!]
 }
 
 type Like {

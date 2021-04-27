@@ -1,16 +1,19 @@
 package com.gutinicolas.publisher.ink.resolvers.mutation
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver
-import com.gutinicolas.publisher.ink.model.api.Comment
 import com.gutinicolas.publisher.ink.model.api.Paper
+import com.gutinicolas.publisher.ink.model.api.Review
+import com.gutinicolas.publisher.ink.repository.PaperRepository
 import org.springframework.stereotype.Component
 import java.util.*
 
 @Component
-class PaperMutationResolver(): GraphQLMutationResolver {
+class PaperMutationResolver(private val paperRepository: PaperRepository): GraphQLMutationResolver {
 
     fun publishPaper(title: String, creator: String, body: String, description: String): Paper {
-        return Paper("Titulo", "Nicolas", "Body del Post", "Un post de prueba")
+        val paper: Paper = Paper("Titulo", "Nicolas", "Body del Post", "Un post de prueba")
+        paperRepository.save(paper)
+        return paper
     }
 
     fun deletePaper(id: String): Boolean {
@@ -29,16 +32,16 @@ class PaperMutationResolver(): GraphQLMutationResolver {
         return true
     }
 
-    fun commentPaper(paperId: String, userId: String, content: String) : Comment {
-        return Comment(UUID.randomUUID().toString(), "Un comment de prueba")
+    fun commentPaper(paperId: String, userId: String, content: String) : Review {
+        return Review(UUID.randomUUID().toString(), "Un comment de prueba")
     }
 
     fun deleteComment(commentId: String, userId: String) : Boolean {
         return true
     }
 
-    fun replyComment(originalComment: String, userId: String, content: String): Comment {
-        return Comment(UUID.randomUUID().toString(), "Un comment respuesta de prueba")
+    fun replyComment(originalComment: String, userId: String, content: String): Review {
+        return Review(UUID.randomUUID().toString(), "Un comment respuesta de prueba")
     }
 
 }
