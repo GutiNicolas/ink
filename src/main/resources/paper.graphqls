@@ -1,6 +1,11 @@
 type Query {
     papers: [Paper!]
     getPaper(id: String!) : Paper!
+
+    # Users
+    getUser(id: String, email: String): User!
+    validateSession(token: String): LoginResponse!
+    deletePlaceHolder(id: String): PlaceHolderResponse
 }
 
 type Mutation {
@@ -15,6 +20,11 @@ type Mutation {
     commentPaper(paperId: ID!, userId: String!, content: String!) : Review!
     deleteComment(commentId: ID!, userId: String!) : Boolean
     replyComment(originalComment: ID!, userId: String!, content: String!): Review!
+
+    # Users
+    login(email: String, provider: Provider!, verifiedByProvider: Boolean = false, token: String): LoginResponse
+    registrationPlaceHolder(email: String!, idToken: String!, firstName: String, lastName: String, provider: Provider): PlaceHolderResponse
+    register(email: String!, firstName: String, lastName: String, username: String!, blogName: String!, blogDescription: String!): User!
 }
 
 type Paper {

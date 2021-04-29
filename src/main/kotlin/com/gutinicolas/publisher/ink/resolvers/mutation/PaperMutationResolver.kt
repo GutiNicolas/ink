@@ -4,6 +4,7 @@ import com.coxautodev.graphql.tools.GraphQLMutationResolver
 import com.gutinicolas.publisher.ink.model.api.Paper
 import com.gutinicolas.publisher.ink.model.api.Review
 import com.gutinicolas.publisher.ink.services.PublisherService
+import com.gutinicolas.publisher.ruler.model.*
 import org.springframework.stereotype.Component
 import java.util.*
 
@@ -42,4 +43,22 @@ class PaperMutationResolver(private val publisherService: PublisherService): Gra
         return Review(UUID.randomUUID().toString(), "Un comment respuesta de prueba")
     }
 
+
+    // User
+    fun login(email: String, provider: Provider, verifiedByProvider: Boolean = false, token: String): LoginResponse {
+        return LoginResponse(buildUser(), Provider.SELF, "t0k3n")
+    }
+
+    fun registrationPlaceHolder(email: String, idToken: String, firstName: String, lastName: String, provider: Provider): PlaceHolderResponse {
+        return PlaceHolderResponse("d21AdorI08kK", Provider.SELF)
+    }
+
+    fun register(email: String, firstName: String, lastName: String, username: String, blogName: String, blogDescription: String): User {
+        return buildUser()
+    }
+
+    private fun buildUser(): User {
+        var loginData = LoginData("skKA2KASD", Provider.SELF, "L4sTt0k3N")
+        return User("username", "blogTitle", "profilePicture", "profile", loginData, "firstName", "lastName")
+    }
 }

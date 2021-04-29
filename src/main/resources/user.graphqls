@@ -1,0 +1,65 @@
+type User {
+    id: ID!
+    username: String!
+    firstName: String!
+    lastName: String!
+    blogTitle: String
+    profilePicture: String
+    firstSeenDate: String
+    emails: [Email!]
+    phones: [Phone!]
+    userRole: UserRole
+}
+
+type UserBorrower {
+    id: ID!
+    idToken: String
+    email: String
+    firstName: String
+    lastName: String
+    creationDate: String
+    provider: Provider
+}
+
+type LoginResponse {
+    user: User
+    loggingProvider: Provider
+    token: String
+}
+
+type PlaceHolderResponse {
+    id: ID!
+    provider: Provider
+    status: PlaceHolderStatus
+}
+
+enum PlaceHolderStatus {
+    CREATED, DELETED
+}
+
+type Email {
+    email: String!
+    provider: Provider!
+    firstSeenDate: String
+    verified: Boolean
+}
+
+type Phone {
+    phoneNumber: String!
+    phoneType: PhoneType
+    provider: Provider!
+    firstSeenDate: String
+    verified: Boolean
+}
+
+enum Provider {
+    GOOGLE, APPLE, SELF
+}
+
+enum PhoneType {
+    MOBILE, LINE
+}
+
+enum UserRole {
+    USER, ADMIN
+}

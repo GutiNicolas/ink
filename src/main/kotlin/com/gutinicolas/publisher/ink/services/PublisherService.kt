@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service
 class PublisherService(private val paperRepository: PaperRepository) {
 
     fun createPaper(title: String, creator: String, body: String, description: String) : Paper {
-        val paper = Paper("Titulo", "Nicolas", "Body del Post", "Un post de prueba")
+
+        val paper = Paper(title, creator, body, description)
         return paper
     }
 
